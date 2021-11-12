@@ -12,18 +12,17 @@ class Sensor {
   }
 }
   function JSONToSensor(jsonObject){
-  const { strDescription: description,
-    strId: id,
-    strLat: lat,
-    strLng: lng,
-    strPlace: place,
-    strReadonly: readonly,
-    strStateCode: stateCode,
-    strValue: value
+  const { description: description,
+    id: id,
+    lat: lat,
+    lng: lng,
+    place: place,
+    readonly: readonly,
+    state_code: stateCode,
+    value: value
   } = jsonObject
 
   const sensore = new Sensor(description, id, lat, lng, place, readonly, stateCode, value)
-  console.log(sensore)
   return sensore
 }
 
