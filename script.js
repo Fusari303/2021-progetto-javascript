@@ -1,22 +1,26 @@
 const debug = document.getElementById("debug")
-function setContent(domId,content){
-  document.getElementById(domId).innerHTML = content
+
+function setToggle(object){
 }
 
 fetch('https://hf3xzw.deta.dev/')
-.then(r => r.json()) 
-.then(body =>{
-  for(let i = 0; i <= 7; i++){
-    debug.innerHTML = JSON.stringify(body["sensors"][i],null,2)
+  .then(r => r.json())
+  .then(body => {
+    for(var i = 0; i < 8; i++){
     const sensore = JSONToSensor(body["sensors"][i])
-    console.log(sensore)
-    setContent("sensor-description", sensore.description)
-    setContent("sensor-id", sensore.id)
-    setContent("sensor-lat", sensore.lat)
-    setContent("sensor-lng", sensore.lng)
-    setContent("sensor-place", sensore.place)
-    setContent("sensor-readonly", sensore.readonly)
-    setContent("sensor-statecode", sensore.stateCode)
-    setContent("sensor-value", sensore.value)
-  }
+    let strCard = "card" + i
+    let strButton = "btn" + i
+    var card = document.getElementById(strCard)
+    var row = `<h3><p class = "uk-text-uppercase"style="ffont-size:35px;">${sensore.description}</p>
+    <button class="uk-button uk-button-default" type="button"                           uk-toggle="target: #toggle-usage" id=${strButton}>More About                       It</button>
+                 <p id="toggle-usage" hidden>${"ID = " + sensore.id + "<br>"
+                 + "LATITUDE = " + sensore.lat + "<br>"
+                 + "LONGITUDE = " + sensore.lng + "<br>"
+                 + "PLACE = " + sensore.place + "<br>"
+                 + "STATECODE = " + sensore.stateCode + "<br>"
+                 + "VALUE = " + sensore.value + "<br>"}</p>
+               </h3> `
+    card.innerHTML = row
+    }
 })
+
