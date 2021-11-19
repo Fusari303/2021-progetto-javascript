@@ -1,9 +1,71 @@
 <!DOCTYPE html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Sensori</title>
-  	<!-- UIkit CSS -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<style>
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 34px;
+		}
+
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+
+		input:checked+.slider {
+			background-color: #2196F3;
+		}
+
+		input:focus+.slider {
+			box-shadow: 0 0 1px #2196F3;
+		}
+
+		input:checked+.slider:before {
+			-webkit-transform: translateX(26px);
+			-ms-transform: translateX(26px);
+			transform: translateX(26px);
+		}
+
+		/* Rounded sliders */
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+	</style>
+	<title>Sensori</title>
+	<!-- UIkit CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.6/dist/css/uikit.min.css" />
 
 	<!-- UIkit JS -->
@@ -15,43 +77,72 @@
 	</script>
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
+<div class="uk-background-muted uk-padding uk-panel">
 	<div class="uk-container uk-container-large">
-    <div><div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card0">
-      <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn0">More About It</button></div>
-  </div>
+		<div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card0">
+			<h3>
+				<p class="uk-card-title uk-card-media-right uk-text-uppercase" style="ffont-size:35px;" id="description0">
+			</h3>
+      <label class="switch">
+    <input type="checkbox" id="switch0" onchange="myFunction1()">
+    <span class="slider round"></span></br>
+    <p id="demo"></p>
+</div>
   <div class="uk-container uk-container-large">
-    <p><div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card1"></p>
-    <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn1">More About It</button>
+    <p><div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card1">
+    <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description1"></h3>
+    <label class="switch">
+    <input type="checkbox" id="switch1" onchange="myFunction2()">
+    <span class="slider round"></span></br>
+    </label>
   </div>
   <div class="uk-container uk-container-large">
     <div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card2">
-      <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn2">More About It</button>
+      <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description2"></h3>
+      <label class="switch">
+    <input type="checkbox" id="switch2" onchange="myFunction3()">
+    <span class="slider round"></span></br>
+    </label>
   </div>
   <div class="uk-container uk-container-large">
     <div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card3">
-    <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn3">More About It</button>
+      <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description3"></h3>
+      <label class="switch">
+    <input type="checkbox" id="switch3" onchange="myFunction4()">
+    <span class="slider round"></span></br>
+    </label>
   </div>
   <div class="uk-container uk-container-large">
     <div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card4">
-      <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn4">More About It</button>
+      <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description4"></h3>
+      VALUE = <p id = "valore1"> </p>
+    <button id="button4" class="uk-button uk-button-primary" onclick="myFunction5()">Show Value</button>
   </div>
   <div class="uk-container uk-container-large">
     <div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card5">
-      <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn5">More About It</button>
+      <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description5"></h3>
+      VALUE = <p id = "valore2"> </p>
+    <button id="button5" class="uk-button uk-button-primary" onclick="myFunction6()">Show Value</button>
   </div>
   <div class="uk-container uk-container-large">
     <div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card6">
-      <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn6">More About It</button>
+      <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description6"></h3>
+      VALUE = <p id = "valore3"> </p>
+    <button id="button6" class="uk-button uk-button-primary" onclick="myFunction7()">Show Value</button>
   </div>
   <div class="uk-container uk-container-large">
     <div class="uk-card uk-card-hover uk-card-body uk-width-1-2@m uk-align-center" id="card7">
-      <button class="uk-button uk-button-default" type="button" uk-toggle="target: #toggle-usage" id="btn7">More About It</button>
+      <h3><p class = "uk-card-title uk-card-media-right uk-text-uppercase"style="ffont-size:35px;" id="description7"></h3>
+      VALUE = <p id = "valore4"> </p>
+    <button id="button7" class="uk-button uk-button-primary" onclick="myFunction8()">Show Value</button>
   </div>
-
+</div>
 	</div>
 	<div id="debug"></div></div>
 	<script src="sensor.js"></script>
-	<script src="script.js"></script>
+	<script src="script.js">
+  </script>
 </body>
 </html>
