@@ -4,6 +4,8 @@ function setContent(domId,content) {
   document.getElementById(domId).innerHTML = content 
 }
 
+//Funzioni utilizzate per ogni tipo di sensore per gestire il click e l'operazione
+//ad esso associata
 function myFunction1(){
 fetch('https://hf3xzw.deta.dev/')
 .then(r => r.json())
@@ -61,8 +63,8 @@ fetch('https://hf3xzw.deta.dev/')
 .then(r => r.json())
 .then(body => {
    const sensore = JSONToSensor(body["sensors"][4])
-   value0 = sensore.value
-   setContent("valore1",value0)
+   value = sensore.value
+   setContent("valore1",value)
   })
 }
 
@@ -73,8 +75,8 @@ fetch('https://hf3xzw.deta.dev/')
 .then(r => r.json())
 .then(body => {
    const sensore = JSONToSensor(body["sensors"][5])
-   value0 = sensore.value
-   setContent("valore2",value0)
+   value = sensore.value
+   setContent("valore2",value)
   })
 }
 
@@ -84,8 +86,8 @@ fetch('https://hf3xzw.deta.dev/')
 .then(r => r.json())
 .then(body => {
    const sensore = JSONToSensor(body["sensors"][6])
-   value0 = sensore.value
-   setContent("valore3",value0)
+   value = sensore.value
+   setContent("valore3",value)
   })
 }
 
@@ -96,48 +98,31 @@ fetch('https://hf3xzw.deta.dev/')
 .then(r => r.json())
 .then(body => {
    const sensore = JSONToSensor(body["sensors"][7])
-   value0 = sensore.value
-   setContent("valore4",value0)
+   value = sensore.value
+   setContent("valore4",value)
   })
 }
 
-
+//Fetch utilizzata per recuperare i dati e configurare il toggle che mostra
+//delle informazioni in più riguardo al sensore
 fetch('https://hf3xzw.deta.dev/')
 .then(r => r.json())
 .then(body => {
   for (var i = 0; i < 8; i++) {
    const sensore = JSONToSensor(body["sensors"][i])
+    let strCard = "card" + i
+    let strDescription = "description" + i
+    let strToggle = 'toggle-usage' + i
+    var card = document.getElementById(strCard)
+    setContent(strDescription,sensore.description)
+    var row = `<p><button class="uk-button uk-button-default" type="button"                        uk-toggle="target: #${strToggle}" id="btn">More Info</button></p>
+        <p id="${strToggle}" hidden>${"ID = " + sensore.id + "<br>"
+        + "LATITUDE = " + sensore.lat + "<br>"
+        + "LONGITUDE = " + sensore.lng + "<br>"
+        + "PLACE = " + sensore.place + "<br>"
+        + "STATECODE = " + sensore.stateCode + "<br>"}</p>`
+    card.innerHTML += row
     
-    if (sensore.readonly == false) {
-      let strCard = "card" + i
-      let strDescription = "description" + i
-      let strToggle = 'toggle-usage' + i
-      var card = document.getElementById(strCard)
-      setContent(strDescription,sensore.description)
-      var row = `<p><button class="uk-button uk-button-default" type="button"                           uk-toggle="target: #${strToggle}" id="btn">More Info</button></p>
-          <p id="${strToggle}" hidden>${"ID = " + sensore.id + "<br>"
-          + "LATITUDE = " + sensore.lat + "<br>"
-          + "LONGITUDE = " + sensore.lng + "<br>"
-          + "PLACE = " + sensore.place + "<br>"
-          + "STATECODE = " + sensore.stateCode + "<br>"}</p>`
-      card.innerHTML += row
-    }
-    
-    if(sensore.readonly == true)
-    {
-      let strCard = "card" + i
-      let strDescription = "description" + i
-      let strToggle = 'toggle-usage' + i
-      var card = document.getElementById(strCard)
-      setContent(strDescription,sensore.description)
-      var row = `<p><button class="uk-button uk-button-default" type="button"                           uk-toggle="target: #${strToggle}" id="btn">More Info</button></p>
-          <p id="${strToggle}" hidden>${"ID = " + sensore.id + "<br>"
-          + "LATITUDE = " + sensore.lat + "<br>"
-          + "LONGITUDE = " + sensore.lng + "<br>"
-          + "PLACE = " + sensore.place + "<br>"
-          + "STATECODE = " + sensore.stateCode + "<br>"}</p> `
-      card.innerHTML += row
-    }
     }
   })
 
