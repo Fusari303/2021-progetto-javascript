@@ -15,6 +15,7 @@ fetch('https://hf3xzw.deta.dev/')
        sensore.value = "On"
    else 
      sensore.value = "Off"
+    console.log(sensore.value)
   })
 }
 
